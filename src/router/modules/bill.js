@@ -1,6 +1,6 @@
 import Layout from '@/layout'
 
-const systemRouter = {
+const billRouter = {
   path: '/bill',
   component: Layout,
   redirect: '/bill/billManager',
@@ -11,17 +11,17 @@ const systemRouter = {
   },
   children: [
     {
-      path: 'dictionary',
-      component: () => import('@/views/system'),
-      name: 'dictionary',
+      path: 'billManager',
+      component: () => import('@/views/bill/billManager'),
+      name: 'billDetail',
       meta: { title: '账单详情' }
     },
     {
       path: 'temp',
-      component: () => import('@/views/system/temp'),
-      name: 'xxx',
+      component: () => import('@/views/bill/temp'),
+      name: 'billTemp',
       meta: { title: '开发中' }
     }
   ]
 }
-export default systemRouter
+export default billRouter

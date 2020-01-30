@@ -27,3 +27,11 @@ export function del(data) {
   })
 }
 
+// 获取所有字典分类
+export function fetchDicTypes() {
+  return request({
+    url: '/dictionary/dicTypes',
+    method: 'get',
+  })
+}
+

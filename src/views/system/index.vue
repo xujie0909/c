@@ -39,8 +39,22 @@
     <el-dialog title="新增字典" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="字典类型" :label-width="formLabelWidth">
-          <el-input v-model="form.dicType" auto-complete="off" />
+          <!--<el-input v-model="form.dicType" auto-complete="off" />-->
+          <el-select
+          v-model="form.dicType"
+          filterable
+          allow-create
+          default-first-option
+          placeholder="请选择字典类型">
+          <el-option
+            v-for="(item,index) in dicTypes"
+            :key="index"
+            :label="item"
+            :value="item">
+          </el-option>
+        </el-select>
         </el-form-item>
+
         <el-form-item label="字典名称" :label-width="formLabelWidth">
           <el-input v-model="form.dicName" auto-complete="off" />
         </el-form-item>
@@ -62,11 +76,12 @@
 </template>
 
 <script>
-import { fetchList, editDictionary, del } from '@/api/dictionary'
+import { fetchList, editDictionary, del,fetchDicTypes } from '@/api/dictionary'
 
 export default {
   data() {
     return {
+      dicTypes:[],
       tableData: [],
       dialogFormVisible: false,
       form: {
@@ -82,12 +97,22 @@ export default {
     }
   },
   mounted() {
+    //获取字典列表数据
     this.getData()
   },
   methods: {
 
     // 打开新增面板
     showAddModel() {
+      // 清空表单内容
+      this.form = {
+        id: '',
+        dicType: '',
+        dicName: '',
+        dicValue: '',
+        dicDesc: ''
+      }
+      this.getDicTypes();
       this.dialogFormVisible = true
     },
 
@@ -99,24 +124,17 @@ export default {
         dicName: this.form.dicName,
         dicValue: this.form.dicValue,
         dicDesc: this.form.dicDesc
-      }
+      };
       editDictionary(data).then(data => {
         this.$message({
           message: '操作成功！',
           type: 'success'
-        })
+        });
         // 刷新列表
-        this.getData()
+        this.getData();
         // 成功的处理
-        this.dialogFormVisible = false
-        // 清空表单内容
-        this.form = {
-          id: '',
-          dicType: '',
-          dicName: '',
-          dicValue: '',
-          dicDesc: ''
-        }
+        this.dialogFormVisible = false;
+
       })
     },
 
@@ -127,10 +145,18 @@ export default {
       })
     },
 
+    //获取字典类型数据
+    getDicTypes() {
+      fetchDicTypes().then(data => {
+        console.log(JSON.stringify(data.data));
+        this.dicTypes = data.data
+      })
+    },
+
     // 打开编辑数据面板
     edit(row) {
       // 打开模态框
-      this.showAddModel()
+      this.showAddModel();
       this.form = row
     },
 
@@ -143,7 +169,7 @@ export default {
         this.$message({
           message: '操作成功！',
           type: 'success'
-        })
+        });
         // 刷新列表
         this.getData()
       })

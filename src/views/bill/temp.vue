@@ -1,11 +1,9 @@
 <template>
-
+  <div>bill temp page!</div>
 </template>
 
 <script>
-    export default {
-        name: "temp"
-    }
+
 </script>
 
 <style scoped>
