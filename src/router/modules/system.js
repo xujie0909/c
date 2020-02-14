@@ -12,7 +12,7 @@ const systemRouter = {
   children: [
     {
       path: 'dictionary',
-      component: () => import('@/views/system'),
+      component: () => import('@/views/system/dictionary'),
       name: 'dictionary',
       meta: { title: '字典表管理' }
     },

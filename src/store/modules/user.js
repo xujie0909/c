@@ -51,7 +51,7 @@ const actions = {
         const { data } = response
 
         if (!data) {
-          reject('Verification failed, please Login again.')
+          reject('登录失效！请重新登陆！')
         }
         const { trueName, roles } = data
         commit('SET_NAME', trueName)

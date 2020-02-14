@@ -27,6 +27,14 @@
         label="字典描述"
       />
       <el-table-column
+      prop="createTime"
+      label="创建时间"
+      />
+      <el-table-column
+        prop="updateTime"
+        label="更新时间"
+      />
+      <el-table-column
         label="操作"
         width="100"
       >
@@ -48,7 +56,7 @@
           placeholder="请选择字典类型">
           <el-option
             v-for="(item,index) in dicTypes"
-            :key="index"
+            :key="dictionary"
             :label="item"
             :value="item">
           </el-option>
@@ -89,7 +97,9 @@ export default {
         dicType: '',
         dicName: '',
         dicValue: '',
-        dicDesc: ''
+        dicDesc: '',
+        createTime:'',
+        updateTime:''
       },
       query: {},
       formLabelWidth: '120px'

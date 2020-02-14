@@ -17,10 +17,16 @@ const billRouter = {
       meta: { title: '账单详情' }
     },
     {
-      path: 'temp',
-      component: () => import('@/views/bill/temp'),
-      name: 'billTemp',
-      meta: { title: '开发中' }
+      path: 'billTag',
+      component: () => import('@/views/bill/billTag'),
+      name: 'billTag',
+      meta: { title: '账单标签管理' }
+    },
+    {
+      path: 'billDashBord',
+      component: () => import('@/views/bill/billDashBord'),
+      name: 'billDashBord',
+      meta: { title: '账单大盘' }
     }
   ]
 }
