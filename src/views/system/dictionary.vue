@@ -120,7 +120,10 @@ export default {
         dicType: '',
         dicName: '',
         dicValue: '',
-        dicDesc: ''
+        dicDesc: '',
+        createTime:'',
+        updateTime:''
+
       }
       this.getDicTypes();
       this.dialogFormVisible = true
@@ -133,7 +136,9 @@ export default {
         dicType: this.form.dicType,
         dicName: this.form.dicName,
         dicValue: this.form.dicValue,
-        dicDesc: this.form.dicDesc
+        dicDesc: this.form.dicDesc,
+        createTime:this.form.createTime,
+        updateTime:this.form.updateTime
       };
       editDictionary(data).then(data => {
         this.$message({

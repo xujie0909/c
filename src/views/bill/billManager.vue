@@ -8,7 +8,7 @@
 
     <el-upload
       class="upload-demo"
-      action="http://localhost:8080/mgmt/upload"
+      action="http://localhost:8080/bill/upload"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :before-remove="beforeRemove"
